@@ -164,7 +164,7 @@ def strassen(A, B):
 
 
 
-# to test the matrix
+# to test the matrix I got from the project pdf
 if __name__ == "__main__":
     A = [
         [2, 0, -1, 6],
