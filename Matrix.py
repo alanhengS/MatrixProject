@@ -129,10 +129,20 @@ def strassen(A, B):
   #combining the results of the 7 products into quadrants
 
 
-   C11 = add_matrix(sub_matrix(add_matrix(P5, P4), P2), P6)
+   temp1 = add_matrix(P5, P4)
+   temp2 = sub_matrix(temp1, P2)
+   C11 = add_matrix(temp2, P6)
+
+    # Compute C12
    C12 = add_matrix(P1, P2)
+
+    # Compute C21
    C21 = add_matrix(P3, P4)
-   C22 = add_matrix(sub_matrix(add_matrix(P5, P3), P3), P7)
+
+    # Compute C22
+   temp3 = add_matrix(P5, P1)
+   temp4 = sub_matrix(temp3, P3)
+   C22 = add_matrix(temp4, P7)
 
 
 
