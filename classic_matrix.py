@@ -43,7 +43,16 @@ if __name__ == "__main__":
     result = classic(A, B)
 
 # OFFICIAL ALGORITHM RESULT
-    print("Classic Matrix:")
+
+    print("Matrix A:")
+    for row in A:
+        print(row)
+    
+    print("\nMatrix B:")
+    for row in B:
+        print(row)
+
+    print("\nClassic Matrix:")
     for row in result:
         print(row)
 
