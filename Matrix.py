@@ -1,4 +1,18 @@
 import random
+import time
+
+
+def generate_matrix(n):
+    #generates a random n * n matrix
+    low = -10
+    high = 10
+    matrix = []
+    for i in range(n):
+        row = []
+        for j in range(n):
+            row.append(random.randint(low, high))
+        matrix.append(row)
+    return matrix
 
 
 def add_matrix(A, B):
@@ -166,6 +180,9 @@ def strassen(A, B):
 
 # to test the matrix I got from the project pdf
 if __name__ == "__main__":
+
+    sizes = [2, 4, 8, 16, 32, 64, 128, 256]
+
     A = [
         [2, 0, -1, 6],
         [3, 7, 8, 0],
@@ -188,6 +205,18 @@ if __name__ == "__main__":
     print("Strassen's Matrix:")
     for row in result:
         print(row)  
+    
+    print("the test case of n")
+
+    for n in sizes:
+        A = generate_matrix(n)
+        B = generate_matrix(n)
+        start = time.time()
+        strassen(A, B)
+        end = time.time()
+        print(f"Matrix size: {n}x{n}  |  Time: {end - start:.5f} sec")
+
+
 
 
 
