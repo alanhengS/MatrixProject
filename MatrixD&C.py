@@ -1,4 +1,7 @@
-def div_con_Mat(A, B):
+
+from classic_matrix import generate_random
+
+def div_con_Matrix(A, B):
     n = len(A)
     if n == 1:
         return [[A[0][0] * B[0][0]]]
@@ -7,14 +10,14 @@ def div_con_Mat(A, B):
     A11, A12, A21, A22 = split4(A, mid)
     B11, B12, B21, B22 = split4(B, mid)
 
-    P1 = div_con_Mat(A11, B11)
-    P2 = div_con_Mat(A12, B21)
-    P3 = div_con_Mat(A11, B12)
-    P4 = div_con_Mat(A12, B22)
-    P5 = div_con_Mat(A21, B11)
-    P6 = div_con_Mat(A22, B21)
-    P7 = div_con_Mat(A21, B12)
-    P8 = div_con_Mat(A22, B22)
+    P1 = div_con_Matrix(A11, B11)
+    P2 = div_con_Matrix(A12, B21)
+    P3 = div_con_Matrix(A11, B12)
+    P4 = div_con_Matrix(A12, B22)
+    P5 = div_con_Matrix(A21, B11)
+    P6 = div_con_Matrix(A22, B21)
+    P7 = div_con_Matrix(A21, B12)
+    P8 = div_con_Matrix(A22, B22)
 
     # C11 = (P1 + P2)
     # C12 = (P3 + P4)
@@ -47,3 +50,42 @@ def split4(M, mid):
         X22.append(row22)
 
     return X11, X12, X21, X22
+
+if __name__ == "__main__":
+    n = 4  # Size of the matrix (must be a power of 2 for simplicity)
+    A = generate_random(n)
+    B = generate_random(n)
+    result = div_con_Matrix(A, B)
+
+    print("Matrix A:")
+    for row in A:
+        print(row)
+    
+    print("\nMatrix B:")
+    for row in B:
+        print(row)
+
+    print("\nDivide and Conquer Matrix:")
+    for row in result:
+        print(row)
+
+    # TESTING ALGORITHM FOR REPORT ANALYSIS 
+    print("\nTesting random matrix:")
+    
+    test_1 = generate_random(4)
+
+    print("Matrix 1:")
+    for row in test_1:
+        print(row)
+
+    test_2 = generate_random(4)
+    print("Matrix 2:")
+
+    for row in test_2:
+        print(row)
+
+    result = div_con_Matrix(test_1, test_2)
+
+    print("Result: ")
+    for row in result:
+        print(row)
