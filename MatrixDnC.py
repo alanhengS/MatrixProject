@@ -1,5 +1,5 @@
-
 from classic_matrix import generate_random
+import time
 
 def div_con_Matrix(A, B):
     n = len(A)
@@ -78,10 +78,22 @@ def split4(M, mid):
     return X11, X12, X21, X22
 
 if __name__ == "__main__":
-    n = 4  # Size of the matrix (must be a power of 2 for simplicity)
-    A = generate_random(n)
-    B = generate_random(n)
+    A = [
+        [2, 0, -1, 6],
+        [3, 7, 8, 0],
+        [-5, 1, 6, -2],
+        [8, 0, 1, 7]
+    ]
+
+    B = [
+        [0, 1, 6, 3],
+        [-2, 8, 7, 1],
+        [2, 0, -1, 0],
+        [9, 1, 6, -2]
+    ]
     result = div_con_Matrix(A, B)
+
+# OFFICIAL ALGORITHM RESULT
 
     print("Matrix A:")
     for row in A:
@@ -96,22 +108,14 @@ if __name__ == "__main__":
         print(row)
 
     # TESTING ALGORITHM FOR REPORT ANALYSIS 
-    print("\nTesting random matrix:")
+    sizes = [2, 4, 8, 16, 32, 64, 128, 256]
     
-    test_1 = generate_random(4)
+    print("the test case of n")
 
-    print("Matrix 1:")
-    for row in test_1:
-        print(row)
-
-    test_2 = generate_random(4)
-    print("Matrix 2:")
-
-    for row in test_2:
-        print(row)
-
-    result = div_con_Matrix(test_1, test_2)
-
-    print("Result: ")
-    for row in result:
-        print(row)
+    for n in sizes:
+        A = generate_random(n)
+        B = generate_random(n)
+        start = time.time()
+        div_con_Matrix(A, B)
+        end = time.time()
+        print(f"Matrix size: {n}x{n}  |  Time: {end - start:.5f} sec")
