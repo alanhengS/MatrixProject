@@ -1,4 +1,5 @@
 import random
+import time
 
 def generate_random(n):
     matrix = []
@@ -27,6 +28,9 @@ def classic(A, B):
 
 
 if __name__ == "__main__":
+    
+    sizes = [2, 4, 8, 16, 32, 64, 128, 256]
+
     A = [
         [2, 0, -1, 6],
         [3, 7, 8, 0],
@@ -39,7 +43,8 @@ if __name__ == "__main__":
         [-2, 8, 7, 1],
         [2, 0, -1, 0],
         [9, 1, 6, -2]
-    ]
+    ]  
+    
     result = classic(A, B)
 
 # OFFICIAL ALGORITHM RESULT
@@ -62,18 +67,10 @@ if __name__ == "__main__":
     
     test_1 = generate_random(4)
 
-    print("Matrix 1:")
-    for row in test_1:
-        print(row)
-
-    test_2 = generate_random(4)
-    print("Matrix 2:")
-
-    for row in test_2:
-        print(row)
-
-    result = classic(test_1, test_2)
-
-    print("Result: ")
-    for row in result:
-        print(row)
+    for n in sizes:
+        A = generate_random(n)
+        B = generate_random(n)
+        start = time.perf_counter()  # high-resolution timer
+        classic(A, B)
+        end = time.perf_counter()
+        print(f"Matrix size: {n}x{n}  |  Time: {end - start:.5f} sec")
