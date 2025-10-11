@@ -19,11 +19,37 @@ def div_con_Matrix(A, B):
     P7 = div_con_Matrix(A21, B12)
     P8 = div_con_Matrix(A22, B22)
 
-    # C11 = (P1 + P2)
-    # C12 = (P3 + P4)
-    # C21 = (P5 + P6)  
-    # C22 = (P7 + P8)
+    C11 = add(P1, P2)
+    C12 = add(P3, P4)
+    C21 = add(P5, P6)
+    C22 = add(P7, P8)
 
+    # Reassemble the full matrix
+    return join(C11, C12, C21, C22)
+
+def add(X, Y):
+    n = len(X)
+    result = []
+    for i in range(n):
+        row = []
+        for j in range(n):
+            row.append(X[i][j] + Y[i][j])
+        result.append(row)
+    return result
+
+def join(C11, C12, C21, C22):
+    half = len(C11)
+    combined = []
+
+    # top half
+    for i in range(half):
+        combined.append(C11[i] + C12[i])
+
+    # bottom half
+    for i in range(half):
+        combined.append(C21[i] + C22[i])
+
+    return combined
 
 def split4(M, mid):
     n = len(M)
